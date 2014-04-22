@@ -599,7 +599,6 @@ class Abe:
         body += abe.short_link(page, 'b/' + block_shortlink(block_hash))
 
         body += ['<p>Hash: ', block_hash, '<br />\n']
-        body += ['<p>Masternode Votes: ', votes, '<br />\n']
 
         if prev_block_hash is not None:
             body += ['Previous Block: <a href="', dotdotblock,
@@ -645,8 +644,6 @@ class Abe:
             if abe.debug else '',
 
             '</p>\n']
-
-        body += ['<h3>Transactions</h3>\n']
 
         tx_ids = []
         txs = {}
@@ -710,6 +707,22 @@ class Abe:
                     "value": txin_value,
                     "pubkey_hash": pubkey_hash,
                     })
+        
+
+        body += ['<h3>Masternode Votes</h3>\n']
+
+        ##################### MASTERNODE VOTING #######################
+        body += ['<BR><table><tr><th>Blockheight</th><th>Pubkey</th><th>Votes</th>'
+                 '</tr>\n']
+
+        voteslist = json.loads(votes)
+        for v in voteslist:
+            body += "<tr><td>%s</td><td>%s</td><td>%s</td></tr>" % (v['blockHeight'], v['scriptPubKey'], v['votes'])
+
+        body += '</table><BR>\n'
+        ################################################################
+
+        body += ['<h3>Transactions</h3>\n']
 
         body += ['<table><tr><th>Transaction</th><th>Fee</th>'
                  '<th>Size (kB)</th><th>From (amount)</th><th>To (amount)</th>'

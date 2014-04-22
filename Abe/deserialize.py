@@ -109,7 +109,6 @@ def parse_MasterNodeVote(vds):
   except:
     d['votes'] = []
 
-  print d
   return d
 
 def deserialize_Transaction(d, transaction_index=None, owner_keys=None, print_raw_tx=False):
