@@ -3028,6 +3028,8 @@ store._ddl['txout_approx'],
             store.save_blkfile_offset(dircfg, ds.read_cursor)
 
     def parse_block(store, ds, chain_id=None, magic=None, length=None):
+        end = ds.read_cursor + length
+        
         d = deserialize.parse_BlockHeader(ds)
         if d['version'] & (1 << 8):
             if chain_id in store.no_bit8_chain_ids:
@@ -3041,9 +3043,12 @@ store._ddl['txout_approx'],
         for i in xrange(nTransactions):
             d['transactions'].append(deserialize.parse_Transaction(ds))
         d['masternode-votes'] = []
-        nVotes = ds.read_compact_size()
-        for i in xrange(nVotes):
-            d['masternode-votes'].append(deserialize.parse_MasterNodeVote(ds))
+
+        if ds.read_cursor != end:
+            nVotes = ds.read_compact_size()
+            for i in xrange(nVotes):
+                d['masternode-votes'].append(deserialize.parse_MasterNodeVote(ds))
+
         return d
 
     def parse_tx(store, bytes):

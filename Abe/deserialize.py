@@ -99,10 +99,15 @@ def parse_MasterNodeVote(vds):
   d = {}
   start_pos = vds.read_cursor
   d['blockHeight'] = vds.read_int64()
-  vds.read_bytes(4)
-  d['scriptPubKey'] = hash_160_to_bc_address(vds.read_bytes(20))
-  #d['scriptPubKey'] = vds.read_bytes(20)
-  vds.read_bytes(2)
+  
+
+  d['scriptPubKey'] = extract_public_key(vds.read_bytes(vds.read_compact_size()))
+
+  # print hash_160_to_bc_address(vds.read_bytes(20))
+  # exit()
+  # d['scriptPubKey'] = hash_160_to_bc_address(vds.read_bytes(20))
+  # #d['scriptPubKey'] = vds.read_bytes(20)
+  # vds.read_bytes(2)
 
   try:
     d['votes'] = vds.read_int32()
