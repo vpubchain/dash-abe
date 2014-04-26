@@ -521,7 +521,7 @@ class Abe:
                 '</td><td>', format_time(int(nTime)),
                 '</td><td>', num_tx,
                 '</td><td>', format_satoshis(value_out, chain),
-                '</td><td>', util.calculate_difficulty(int(nBits))/256,
+                '</td><td>', util.calculate_difficulty(int(nBits)),
                 '</td><td>', format_satoshis(satoshis, chain),
                 '</td><td>', avg_age,
                 '</td><td>', '%5g' % (seconds / 86400.0),
