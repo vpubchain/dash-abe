@@ -57,8 +57,8 @@ CONFIG_DEFAULTS = {
 WORK_BITS = 304  # XXX more than necessary.
 
 CHAIN_CONFIG = [
-    {"chain":"Xcoin",
-     "code3":"XCO", "address_version":"\x4c", "magic":"\xfe\xa5\x03\xdd"},
+    {"chain":"Darkcoin",
+     "code3":"DRK", "address_version":"\x4c", "magic":"\xfe\xa5\x03\xdd"},
     ]
 
 NULL_HASH = "\0" * 32
@@ -2753,7 +2753,6 @@ store._ddl['txout_approx'],
             rpc_hash = next_hash or get_blockhash(height)
             while rpc_hash is not None:
                 hash = rpc_hash.decode('hex')[::-1]
-
                 if store.offer_existing_block(hash, chain_id):
                     rpc_hash = get_blockhash(height + 1)
                 else:
@@ -2777,6 +2776,7 @@ store._ddl['txout_approx'],
                         'transactions': [],
                         'size':     int(rpc_block['size']),
                         'height':   height,
+                        'masternode-votes': [],
                         }
 
                     if util.block_hash(block) != hash:
