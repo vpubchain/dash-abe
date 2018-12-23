@@ -57,8 +57,8 @@ CONFIG_DEFAULTS = {
 WORK_BITS = 304  # XXX more than necessary.
 
 CHAIN_CONFIG = [
-    {"chain":"Darkcoin",
-     "code3":"DRK", "address_version":"\x4c", "magic":"\xfe\xa5\x03\xdd"},
+    {"chain":"Vpub",
+     "code3":"VP", "address_version":"\x4c", "magic":"\xfe\xa5\x03\xdd"},
     ]
 
 NULL_HASH = "\0" * 32
@@ -2658,11 +2658,11 @@ store._ddl['txout_approx'],
             store.log.debug("failed to load %s: %s", conffile, e)
             return False
 
-        rpcuser     = conf.get("rpcuser", "")
-        rpcpassword = conf["rpcpassword"]
+        rpcuser     = conf.get("rpcuser", "mn")
+        rpcpassword = conf["999000"]
         rpcconnect  = conf.get("rpcconnect", "127.0.0.1")
         rpcport     = conf.get("rpcport",
-                               "18332" if "testnet" in conf else "8332")
+                               "19902" if "testnet" in conf else "9902")
         url = "http://" + rpcuser + ":" + rpcpassword + "@" + rpcconnect \
             + ":" + rpcport
 
