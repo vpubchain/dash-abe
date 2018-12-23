@@ -2659,7 +2659,7 @@ store._ddl['txout_approx'],
             return False
 
         rpcuser     = conf.get("rpcuser", "mn")
-        rpcpassword = conf["999000"]
+        rpcpassword = conf["rpcpassword"]
         rpcconnect  = conf.get("rpcconnect", "127.0.0.1")
         rpcport     = conf.get("rpcport",
                                "19902" if "testnet" in conf else "9902")
