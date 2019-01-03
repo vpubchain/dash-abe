@@ -2616,6 +2616,7 @@ store._ddl['txout_approx'],
         for dircfg in store.datadirs:
             try:
                 loader = dircfg['loader'] or store.default_loader
+                print loader
                 if loader == "blkfile":
                     store.catch_up_dir(dircfg)
                 elif loader in ("rpc", "rpc,blkfile", "default"):
