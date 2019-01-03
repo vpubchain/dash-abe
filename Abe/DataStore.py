@@ -2667,7 +2667,8 @@ store._ddl['txout_approx'],
             + ":" + rpcport
 
         def rpc(func, *params):
-            store.rpclog.info("RPC>> %s %s", func, params)
+            store.rpclog.debug("RPC>> %s %s %s",url, func, params)
+
             ret = util.jsonrpc(url, func, *params)
 
             if (store.rpclog.isEnabledFor(logging.INFO)):
