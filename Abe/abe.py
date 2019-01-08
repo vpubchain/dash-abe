@@ -487,9 +487,9 @@ class Abe:
         #extra = True
         body += ['<p>', nav, '</p>\n',
                  '<table class="table-bordered"><tr><th>区块高度</th><th>区块时间</th>',
-                 '<th>交易数量</th><th>交易额</th>',
-                 '<th>难度</th><th>开采量</th>',
-                 '<th>平均年龄</th><th>链年龄</th>',
+                 '<th>交易笔数</th><th>交易数量</th>',
+                 '<th>难度</th><th>已挖数量</th>',
+                 '<th>平均币龄</th><th>维公链已诞生</th>',
                  '<th>% ',
                  '<a href="https://en.bitcoin.it/wiki/Bitcoin_Days_Destroyed">',
                  'CoinDD</a></th>',
