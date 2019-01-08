@@ -996,7 +996,7 @@ class Abe:
             raise PageNotFound()
 
         body = page['body']
-        page['title'] = '地址 ' + escape(address)
+        page['title'] = '钱包地址 ' + escape(address)
         version, binaddr = util.decode_check_address(address)
         if binaddr is None:
             body += ['<p>无效的地址信息。</p>']
@@ -1281,7 +1281,7 @@ class Abe:
         return ret
 
     def _found_address(abe, address):
-        return { 'name': '地址 ' + address, 'uri': 'address/' + address }
+        return { 'name': '钱包地址 ' + address, 'uri': 'address/' + address }
 
     def search_address(abe, address):
         try:
