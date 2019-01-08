@@ -602,36 +602,36 @@ class Abe:
 
         body += abe.short_link(page, 'b/' + block_shortlink(block_hash))
 
-        body += ['<p class="box-msg">Hash: ', block_hash, '<br />\n']
+        body += ['<p class="box-msg">区块哈希: ', block_hash, '<br />\n']
 
         if prev_block_hash is not None:
-            body += ['Previous Block: <a href="', dotdotblock,
+            body += ['上一区块: <a href="', dotdotblock,
                      prev_block_hash, '">', prev_block_hash, '</a><br />\n']
         if next_list:
-            body += ['Next Block: ']
+            body += ['下一区块: ']
         for row in next_list:
             hash = abe.store.hashout_hex(row[0])
             body += ['<a href="', dotdotblock, hash, '">', hash, '</a><br />\n']
 
         body += [
-            ['Height: ', height, '<br />\n']
+            ['区块高度: ', height, '<br />\n']
             if height is not None else '',
 
-            'Version: ', block_version, '<br />\n',
-            'Transaction Merkle Root: ', hashMerkleRoot, '<br />\n',
-            'Time: ', nTime, ' (', format_time(nTime), ')<br />\n',
-            'Difficulty: ', format_difficulty(util.calculate_difficulty(nBits)),
+            '区块版本: ', block_version, '<br />\n',
+            '默克尔树: ', hashMerkleRoot, '<br />\n',
+            '时间戳: ', nTime, ' (', format_time(nTime), ')<br />\n',
+            '难度: ', format_difficulty(util.calculate_difficulty(nBits)),
             ' (Bits: %x)' % (nBits,), '<br />\n',
 
-            ['Cumulative Difficulty: ', format_difficulty(
+            ['累计难度: ', format_difficulty(
                     util.work_to_difficulty(block_chain_work)), '<br />\n']
             if block_chain_work is not None else '',
 
-            'Nonce: ', nNonce, '<br />\n',
-            'Transactions: ', num_tx, '<br />\n',
-            'Value out: ', format_satoshis(value_out, chain), '<br />\n',
+            '随机数: ', nNonce, '<br />\n',
+            '交易数量: ', num_tx, '<br />\n',
+            '交易额: ', format_satoshis(value_out, chain), '<br />\n',
 
-            ['Average Coin Age: %6g' % (ss / 86400.0 / satoshis,),
+            ['平均币龄: %6g' % (ss / 86400.0 / satoshis,),
              ' days<br />\n']
             if satoshis and (ss is not None) else '',
 
@@ -713,10 +713,10 @@ class Abe:
                     })
         
 
-        body += ['<h3>Masternode Votes</h3>\n']
+        body += ['<h3>主节点选票</h3>\n']
 
         ##################### MASTERNODE VOTING #######################
-        body += ['<BR><table><tr><th>Blockheight</th><th>Pubkey</th><th>Votes</th>'
+        body += ['<BR><table><tr><th>区块高度</th><th>公钥</th><th>选票</th>'
                  '</tr>\n']
 
         voteslist = json.loads(votes)
@@ -726,10 +726,10 @@ class Abe:
         body += '</table><BR>\n'
         ################################################################
 
-        body += ['<h3>Transactions</h3>\n']
+        body += ['<h3>交易信息</h3>\n']
 
-        body += ['<table><tr><th>Transaction</th><th>Fee</th>'
-                 '<th>Size (kB)</th><th>From (amount)</th><th>To (amount)</th>'
+        body += ['<table><tr><th>交易哈希</th><th>费用</th>'
+                 '<th>大小(kB)</th><th>转出方(数量)</th><th>转入方(数量)</th>'
                  '</tr>\n']
         for tx_id in tx_ids:
             tx = txs[tx_id]
@@ -1994,7 +1994,7 @@ class Abe:
         else:
             full = base + link
 
-        return ['<p class="shortlink">Short Link: <a href="',
+        return ['<p class="shortlink">短链接: <a href="',
                 page['dotdot'], link, '">', full, '</a></p>\n']
 
     def fix_path_info(abe, env):
