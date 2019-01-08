@@ -717,7 +717,7 @@ class Abe:
 
         ##################### MASTERNODE VOTING #######################
         # body += ['<BR><table><tr><th>区块高度</th><th>公钥</th><th>选票</th>'
-                 '</tr>\n']
+                #  '</tr>\n']
 
         # voteslist = json.loads(votes)
         # for v in voteslist:
