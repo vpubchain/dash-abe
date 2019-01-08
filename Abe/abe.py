@@ -486,7 +486,7 @@ class Abe:
         extra = False
         #extra = True
         body += ['<p>', nav, '</p>\n',
-                 '<table class="table-bordered"><tr><th>Block</th><th>Approx. Time</th>',
+                 '<table class="table-bordered"><tr><th>区块高度</th><th>Approx. Time</th>',
                  '<th>Transactions</th><th>Transactions</th>',
                  '<th>Difficulty</th><th>Outstanding</th>',
                  '<th>Average Age</th><th>Chain Age</th>',
