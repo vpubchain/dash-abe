@@ -628,7 +628,7 @@ class Abe:
             if block_chain_work is not None else '',
 
             '随机数: ', nNonce, '<br />\n',
-            '交易数量: ', num_tx, '<br />\n',
+            '交易笔数: ', num_tx, '<br />\n',
             '交易额: ', format_satoshis(value_out, chain), '<br />\n',
 
             ['平均币龄: %6g' % (ss / 86400.0 / satoshis,),
@@ -713,17 +713,17 @@ class Abe:
                     })
         
 
-        body += ['<h3>主节点选票</h3>\n']
+        # body += ['<h3>主节点选票</h3>\n']
 
         ##################### MASTERNODE VOTING #######################
-        body += ['<BR><table><tr><th>区块高度</th><th>公钥</th><th>选票</th>'
+        # body += ['<BR><table><tr><th>区块高度</th><th>公钥</th><th>选票</th>'
                  '</tr>\n']
 
-        voteslist = json.loads(votes)
-        for v in voteslist:
-            body += "<tr><td>%s</td><td>%s</td><td>%s</td></tr>" % (v['blockHeight'], v['scriptPubKey'], v['votes'])
+        # voteslist = json.loads(votes)
+        # for v in voteslist:
+        #     body += "<tr><td>%s</td><td>%s</td><td>%s</td></tr>" % (v['blockHeight'], v['scriptPubKey'], v['votes'])
 
-        body += '</table><BR>\n'
+        # body += '</table><BR>\n'
         ################################################################
 
         body += ['<h3>交易信息</h3>\n']
