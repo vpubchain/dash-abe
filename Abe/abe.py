@@ -617,7 +617,7 @@ class Abe:
             ['区块高度: ', height, '<br />\n']
             if height is not None else '',
 
-            '区块版本: ', block_version, '<br />\n',
+            '版本: ', block_version, '<br />\n',
             '默克尔树: ', hashMerkleRoot, '<br />\n',
             '时间戳: ', nTime, ' (', format_time(nTime), ')<br />\n',
             '难度: ', format_difficulty(util.calculate_difficulty(nBits)),
@@ -632,7 +632,7 @@ class Abe:
             '交易额: ', format_satoshis(value_out, chain), '<br />\n',
 
             ['平均币龄: %6g' % (ss / 86400.0 / satoshis,),
-             ' days<br />\n']
+             ' 天<br />\n']
             if satoshis and (ss is not None) else '',
 
             '' if destroyed is None else
