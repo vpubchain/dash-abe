@@ -40,6 +40,10 @@ import Abe.util  # Added functions.
 import Abe.base58
 from Abe.abe import *
 
+if sys.getdefaultencoding() != 'utf-8':
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+
 AML_APPNAME = "Bitcoin ecdsa.org"
 
 AML_TEMPLATE = """
@@ -567,13 +571,11 @@ This site is powered by <span style="font-style: italic"> <a href="https://githu
     def search_form(abe, page):
         q = (page['params'].get('q') or [''])[0]
         return [
-            '<p>Search by address, block number, block or transaction hash,'
-            ' or chain name:</p>\n'
+            '<p>查询区块高度、区块哈希、交易哈希或者地址:</p>\n'
             '<form class="form-control" action="', page['dotdot'], 'search"><p>\n'
             '<input name="q" size="64" value="', escape(q), '" />'
-            '<button class="btn-default" type="submit">Search</button>\n'
-            '<br />Address or hash search requires at least the first six'
-            ' characters.</p></form>\n']
+            '<button class="btn-default" type="submit">搜索</button>\n'
+            '<br />地址或者哈希至少需要输入前6位字符。</p></form>\n']
 
     def get_reports(abe):
         rows = abe.store.selectall("select reports.report_id, tx.tx_id, tx.tx_hash, name from reports left join tx on tx.tx_id=reports.tx_id" )
