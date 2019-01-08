@@ -965,7 +965,7 @@ class Abe:
         body += ['</tr>\n']
         for row in in_rows:
             row_to_html(row, 'i', 'o',
-                        'Generation' if is_coinbase else 'Unknown')
+                        '挖矿所得' if is_coinbase else '未知')
         body += ['</table>\n',
                  '<a name="outputs"><h3>输出列表</h3></a>\n<table>\n',
                  '<tr><th>序号</th><th>后一输入项</th><th>数量</th>',
