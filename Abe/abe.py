@@ -861,7 +861,7 @@ class Abe:
                 '<td>', format_satoshis(row['value'], chain), '</td>\n',
                 '<td>']
             if row['binaddr'] is None:
-                body += ['未知']
+                body += ['Unknown']
             else:
                 body += hash_to_address_link(chain['address_version'],
                                              row['binaddr'], '../')
