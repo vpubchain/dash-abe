@@ -1137,22 +1137,22 @@ class Abe:
             link = address[0 : abe.shortlink_type]
         body += abe.short_link(page, 'a/' + link)
 
-        body += ['<p>Balance: '] + format_amounts(balance, True)
+        body += ['<p>余额: '] + format_amounts(balance, True)
 
         for chain_id in chain_ids:
             balance[chain_id] = 0  # Reset for history traversal.
 
         body += ['<br />\n',
-                 'Transactions in: ', count[0], '<br />\n',
-                 'Received: ', format_amounts(received, False), '<br />\n',
-                 'Transactions out: ', count[1], '<br />\n',
-                 'Sent: ', format_amounts(sent, False), '<br />\n']
+                 '转入笔数: ', count[0], '<br />\n',
+                 '转入数量: ', format_amounts(received, False), '<br />\n',
+                 '转出笔数: ', count[1], '<br />\n',
+                 '转出数量: ', format_amounts(sent, False), '<br />\n']
 
         body += ['</p>\n'
-                 '<h3>Transactions</h3>\n'
-                 '<table>\n<tr><th>Transaction</th><th>Block</th>'
-                 '<th>Approx. Time</th><th>Amount</th><th>Balance</th>'
-                 '<th>Currency</th></tr>\n']
+                 '<h3>交易列表</h3>\n'
+                 '<table>\n<tr><th>交易哈希</th><th>Block</th>'
+                 '<th>时间</th><th>数量</th><th>余额</th>'
+                 '<th>单位</th></tr>\n']
 
         for elt in txpoints:
             chain = chains[elt['chain_id']]
