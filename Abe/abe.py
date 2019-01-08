@@ -802,7 +802,7 @@ class Abe:
             raise PageNotFound()
 
         tx_hash = tx_hash.lower()  # Case-insensitive, BBE compatible
-        page['title'] = ['Transaction ', tx_hash[:10], '...', tx_hash[-4:]]
+        page['title'] = ['交易 ', tx_hash[:10], '...', tx_hash[-4:]]
         body = page['body']
 
         if not is_hash_prefix(tx_hash):
@@ -815,7 +815,7 @@ class Abe:
              WHERE tx_hash = ?
         """, (abe.store.hashin_hex(tx_hash),))
         if row is None:
-            body += ['<p class="error">Transaction not found.</p>']
+            body += ['<p class="error">未找到该交易信息。</p>']
             return
         tx_id, tx_version, tx_lockTime, tx_size = (
             int(row[0]), int(row[1]), int(row[2]), int(row[3]))
@@ -930,7 +930,7 @@ class Abe:
                 chain = abe.chain_lookup_by_name(name)
                 is_coinbase = (tx_pos == 0)
             elif name <> chain['name']:
-                abe.log.warn('Transaction ' + tx_hash + ' in multiple chains: '
+                abe.log.warn('交易 ' + tx_hash + ' in multiple chains: '
                              + name + ', ' + chain['name'])
             body += [
                 '所在区块:<a href="../block/', blk_hash, '">',
@@ -981,11 +981,11 @@ class Abe:
         tx_hash = wsgiref.util.shift_path_info(page['env'])
         if tx_hash in (None, '') or page['env']['PATH_INFO'] != '' \
                 or not is_hash_prefix(tx_hash):
-            return 'ERROR: Not in correct format'  # BBE compatible
+            return 'ERROR: 格式不正确。'  # BBE compatible
 
         tx = abe.store.export_tx(tx_hash=tx_hash.lower())
         if tx is None:
-            return 'ERROR: Transaction does not exist.'  # BBE compatible
+            return 'ERROR: 交易信息不存在。'  # BBE compatible
         return json.dumps(tx, sort_keys=True, indent=2)
 
     def handle_address(abe, page):
@@ -994,10 +994,10 @@ class Abe:
             raise PageNotFound()
 
         body = page['body']
-        page['title'] = 'Address ' + escape(address)
+        page['title'] = '地址 ' + escape(address)
         version, binaddr = util.decode_check_address(address)
         if binaddr is None:
-            body += ['<p>Not a valid address.</p>']
+            body += ['<p>无效的地址信息。</p>']
             return
 
         dbhash = abe.store.binin(binaddr)
@@ -1105,7 +1105,7 @@ class Abe:
             txpoints.append(txpoint)
 
         if (not chain_ids):
-            body += ['<p>Address not seen on the network.</p>']
+            body += ['<p>未找到该地址。</p>']
             return
 
         def format_amounts(amounts, link):
@@ -1150,7 +1150,7 @@ class Abe:
 
         body += ['</p>\n'
                  '<h3>交易列表</h3>\n'
-                 '<table>\n<tr><th>交易哈希</th><th>Block</th>'
+                 '<table>\n<tr><th>交易哈希</th><th>区块高度</th>'
                  '<th>时间</th><th>数量</th><th>余额</th>'
                  '<th>单位</th></tr>\n']
 
@@ -1279,7 +1279,7 @@ class Abe:
         return ret
 
     def _found_address(abe, address):
-        return { 'name': 'Address ' + address, 'uri': 'address/' + address }
+        return { 'name': '地址 ' + address, 'uri': 'address/' + address }
 
     def search_address(abe, address):
         try:

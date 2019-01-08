@@ -416,7 +416,7 @@ This site is powered by <span style="font-style: italic"> <a href="https://githu
         page['title'] = 'Address ' + escape(address)
         version, binaddr = decode_check_address(address)
         if binaddr is None:
-            body += ['<p>Not a valid address.</p>']
+            body += ['<p>无效的地址信息。</p>']
             return
 
         ret = """<html><body>
@@ -441,7 +441,7 @@ This site is powered by <span style="font-style: italic"> <a href="https://githu
         page['title'] = 'Address ' + escape(address)
         version, binaddr = decode_check_address(address)
         if binaddr is None:
-            body += ['<p>Not a valid address.</p>']
+            body += ['<p>无效的地址信息。</p>']
             return
 
         txpoints = []
@@ -813,7 +813,7 @@ This site is powered by <span style="font-style: italic"> <a href="https://githu
             # check if address is valid
             version, binaddr = decode_check_address(address)
             if binaddr is None:
-                page['body'] = ['<p>Not a valid address.</p>']
+                page['body'] = ['<p>无效的地址信息。</p>']
                 return
             # check amount
             try:
