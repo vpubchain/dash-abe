@@ -470,18 +470,18 @@ class Abe:
         if hi != count - 1:
             nav[-1] = ['<a class="btn-sm" href="', basename, '?hi=', str(count - 1),
                         '&amp;count=', str(count), '">', nav[-1], '</a>']
-        for c in (20, 50, 100, 500, 2016):
-            nav += [' ']
-            if c != count:
-                nav += ['<a href="', basename, '?count=', str(c)]
-                if hi is not None:
-                    nav += ['&amp;hi=', str(max(hi, c - 1))]
-                nav += ['">']
-            nav += [' ', str(c)]
-            if c != count:
-                nav += ['</a>']
+        # for c in (20, 50, 100, 500, 2016):
+        #     nav += [' ']
+        #     if c != count:
+        #         nav += ['<a href="', basename, '?count=', str(c)]
+        #         if hi is not None:
+        #             nav += ['&amp;hi=', str(max(hi, c - 1))]
+        #         nav += ['">']
+        #     nav += [' ', str(c)]
+        #     if c != count:
+        #         nav += ['</a>']
 
-        nav += [' <a href="', page['dotdot'], '">Search</a>']
+        # nav += [' <a href="', page['dotdot'], '">Search</a>']
 
         extra = False
         #extra = True
