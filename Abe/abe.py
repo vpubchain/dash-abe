@@ -37,11 +37,15 @@ import deserialize
 import util  # Added functions.
 import base58
 
+if sys.getdefaultencoding() != 'utf-8':
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+
 __version__ = version.__version__
 
 ABE_APPNAME = "Abe"
 ABE_VERSION = __version__
-ABE_URL = 'https://github.com/jtobey/bitcoin-abe'
+ABE_URL = 'https://github.com/vpubchain/vpub-abe'
 
 COPYRIGHT_YEARS = '2011'
 COPYRIGHT = "John Tobey"
