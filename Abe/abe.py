@@ -968,11 +968,11 @@ class Abe:
                         'Generation' if is_coinbase else 'Unknown')
         body += ['</table>\n',
                  '<a name="outputs"><h3>输出列表</h3></a>\n<table>\n',
-                 '<tr><th>序号</th><th>Redeemed at input</th><th>数量</th>',
+                 '<tr><th>序号</th><th>后一输入项</th><th>数量</th>',
                 #  '<tr><th>序号</th><th>数量</th>',
                  '<th>转入地址</th><th>签名信息</th></tr>\n']
         for row in out_rows:
-            row_to_html(row, 'o', 'i', 'Not yet redeemed')
+            row_to_html(row, 'o', 'i', '尚未转移')
 
         body += ['</table>\n']
 
