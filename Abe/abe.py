@@ -919,7 +919,7 @@ class Abe:
         is_coinbase = None
 
         body += abe.short_link(page, 't/' + hexb58(tx_hash[:14]))
-        body += ['<p class="box-msg">Hash: ', tx_hash, '<br />\n']
+        body += ['<p class="box-msg">交易哈希:', tx_hash, '<br />\n']
         chain = None
         for row in block_rows:
             (name, in_longest, nTime, height, blk_hash, tx_pos) = (
@@ -933,7 +933,7 @@ class Abe:
                 abe.log.warn('Transaction ' + tx_hash + ' in multiple chains: '
                              + name + ', ' + chain['name'])
             body += [
-                'Appeared in <a href="../block/', blk_hash, '">',
+                '所在区块:<a href="../block/', blk_hash, '">',
                 escape(name), ' ',
                 height if in_longest else [blk_hash[:10], '...', blk_hash[-4:]],
                 '</a> (', format_time(nTime), ')<br />\n']
@@ -943,32 +943,32 @@ class Abe:
             chain = abe.get_default_chain()
 
         body += [
-            'Number of inputs: ', len(in_rows),
-            ' (<a href="#inputs">Jump to inputs</a>)<br />\n',
-            'Total in: ', format_satoshis(value_in, chain), '<br />\n',
-            'Number of outputs: ', len(out_rows),
-            ' (<a href="#outputs">Jump to outputs</a>)<br />\n',
-            'Total out: ', format_satoshis(value_out, chain), '<br />\n',
-            'Size: ', tx_size, ' bytes<br />\n',
-            'Fee: ', format_satoshis(0 if is_coinbase else
+            '输入列表: ', len(in_rows),
+            ' (<a href="#inputs">查看输入</a>)<br />\n',
+            '合计输入: ', format_satoshis(value_in, chain), '<br />\n',
+            '输出列表: ', len(out_rows),
+            ' (<a href="#outputs">查看输出</a>)<br />\n',
+            '合计输出: ', format_satoshis(value_out, chain), '<br />\n',
+            '大小: ', tx_size, ' bytes<br />\n',
+            '费用: ', format_satoshis(0 if is_coinbase else
                                      (value_in and value_out and
                                       value_in - value_out), chain),
             '<br />\n',
-            '<a href="../rawtx/', tx_hash, '">Raw transaction</a><br />\n']
+            '<a href="../rawtx/', tx_hash, '">原始信息</a><br />\n']
         body += ['</p>\n',
-                 '<a name="inputs"><h3>Inputs</h3></a>\n<table>\n',
-                 '<tr><th>Index</th><th>Previous output</th><th>Amount</th>',
-                 '<th>From address</th>']
+                 '<a name="inputs"><h3>输入列表</h3></a>\n<table>\n',
+                 '<tr><th>序号</th><th>前一输出项</th><th>数量</th>',
+                 '<th>转出地址</th>']
         if abe.store.keep_scriptsig:
-            body += ['<th>ScriptSig</th>']
+            body += ['<th>签名信息</th>']
         body += ['</tr>\n']
         for row in in_rows:
             row_to_html(row, 'i', 'o',
                         'Generation' if is_coinbase else 'Unknown')
         body += ['</table>\n',
-                 '<a name="outputs"><h3>Outputs</h3></a>\n<table>\n',
-                 '<tr><th>Index</th><th>Redeemed at input</th><th>Amount</th>',
-                 '<th>To address</th><th>ScriptPubKey</th></tr>\n']
+                 '<a name="outputs"><h3>输出列表</h3></a>\n<table>\n',
+                 '<tr><th>序号</th><th>Redeemed at input</th><th>数量</th>',
+                 '<th>转入地址</th><th>签名信息</th></tr>\n']
         for row in out_rows:
             row_to_html(row, 'o', 'i', 'Not yet redeemed')
 
