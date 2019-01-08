@@ -848,19 +848,20 @@ class Abe:
             body += [
                 '<tr>\n',
                 '<td><a name="', this_ch, row['pos'], '">', row['pos'],
-                '</a></td>\n<td>']
-            if row['o_hash'] is None:
-                body += [no_link_text]
-            else:
-                body += [
-                    '<a href="', row['o_hash'], '#', other_ch, row['o_pos'],
-                    '">', row['o_hash'][:10], '...:', row['o_pos'], '</a>']
+                # '</a></td>\n<td>']
+                '</a></td>\n']
+            # if row['o_hash'] is None:
+            #     body += [no_link_text]
+            # else:
+            #     body += [
+            #         '<a href="', row['o_hash'], '#', other_ch, row['o_pos'],
+            #         '">', row['o_hash'][:10], '...:', row['o_pos'], '</a>']
             body += [
-                '</td>\n',
+                # '</td>\n',
                 '<td>', format_satoshis(row['value'], chain), '</td>\n',
                 '<td>']
             if row['binaddr'] is None:
-                body += ['Unknown']
+                body += ['未知']
             else:
                 body += hash_to_address_link(chain['address_version'],
                                              row['binaddr'], '../')
@@ -967,7 +968,8 @@ class Abe:
                         'Generation' if is_coinbase else 'Unknown')
         body += ['</table>\n',
                  '<a name="outputs"><h3>输出列表</h3></a>\n<table>\n',
-                 '<tr><th>序号</th><th>Redeemed at input</th><th>数量</th>',
+                #  '<tr><th>序号</th><th>Redeemed at input</th><th>数量</th>',
+                 '<tr><th>序号</th><th>数量</th>',
                  '<th>转入地址</th><th>签名信息</th></tr>\n']
         for row in out_rows:
             row_to_html(row, 'o', 'i', 'Not yet redeemed')
@@ -1151,7 +1153,7 @@ class Abe:
         body += ['</p>\n'
                  '<h3>交易列表</h3>\n'
                  '<table>\n<tr><th>交易哈希</th><th>区块高度</th>'
-                 '<th>时间</th><th>数量</th><th>余额</th>'
+                 '<th>时间</th><th>交易数量</th><th>余额</th>'
                  '<th>单位</th></tr>\n']
 
         for elt in txpoints:
